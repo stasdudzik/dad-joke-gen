@@ -1,19 +1,51 @@
 import React from "react";
 import Header from "./components/Header/Header";
 import Joke from "./components/Joke/Joke";
-import Buttons from "./components/Buttons/Buttons";
+import ButtonFun from "./components/Buttons/ButtonFun";
+import ButtonStop from "./components/Buttons/ButtonStop";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
-      isLoaded: false,
-      items: [],
+      isLoaded: true,
+      joke: "",
+      id: "",
     };
   }
 
-  componentDidMount() {
+  // componentDidMount() {
+  //   fetch("https://icanhazdadjoke.com", {
+  //     headers: { Accept: "application/json" },
+  //   })
+  //     .then((res) => res.json())
+  //     .then(
+  //       (result) => {
+  //         this.setState({
+  //           isLoaded: true,
+  //           joke: result.joke,
+  //           id: result.id,
+  //         });
+  //       },
+  //       (error) => {
+  //         this.setState({
+  //           isLoaded: true,
+  //           error,
+  //         });
+  //       }
+  //     );
+  // }
+
+  fetchRandomJoke() {
+    console.log("how");
     fetch("https://icanhazdadjoke.com", {
       headers: { Accept: "application/json" },
     })
@@ -21,14 +53,12 @@ class App extends React.Component {
       .then(
         (result) => {
           this.setState({
-            isLoaded: true,
             joke: result.joke,
             id: result.id,
           });
         },
         (error) => {
           this.setState({
-            isLoaded: true,
             error,
           });
         }
@@ -45,9 +75,12 @@ class App extends React.Component {
     } else {
       return (
         <>
-          <Header text="👴👔👖 Dad Joke Generator 🤦🤦🤦" />
+          <Header />
           <Joke key={id} text={joke} />
-          <Buttons />
+          <Wrapper>
+            <ButtonStop onClick={this.fetchRandomJoke} text="Ugh." />
+            <ButtonFun onClick={this.fetchRandomJoke} text="Haha" />
+          </Wrapper>
         </>
       );
     }

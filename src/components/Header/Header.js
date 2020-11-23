@@ -8,8 +8,8 @@ const Wrapper = styled.h1`
   color: palevioletred;
 `;
 
-const Header = ({ text }) => {
-  return <Wrapper>{text}</Wrapper>;
+const Header = () => {
+  return <Wrapper>👴👔👖 Dad Joke Generator 🤦🤦🤦</Wrapper>;
 };
 
 export default Header;
