@@ -55,11 +55,14 @@ class ButtonFun extends React.Component {
     return (
       <Button
         onClick={() => {
+          this.props.openModalFn();
+          this.props.fetchJoke();
           this.changeText(randomItemFromArray(buttonTextArray));
         }}
       >
         {text}
       </Button>
+      // <Button onClick={this.props.fetchRandomJoke}>{text}</Button>
     );
   }
 }

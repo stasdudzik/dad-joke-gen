@@ -4,6 +4,8 @@ import Joke from "./components/Joke/Joke";
 import ButtonFun from "./components/Buttons/ButtonFun";
 import ButtonStop from "./components/Buttons/ButtonStop";
 import styled from "styled-components";
+import Modal from "./components/Modal/Modal";
+import axios from "axios";
 
 const Wrapper = styled.div`
   display: flex;
@@ -17,8 +19,8 @@ class App extends React.Component {
     this.state = {
       error: null,
       isLoaded: true,
-      joke: "",
-      id: "",
+      isModalOpen: false,
+      joke: "Do you wanna hear a joke?",
     };
   }
 
@@ -44,46 +46,55 @@ class App extends React.Component {
   //     );
   // }
 
-  fetchRandomJoke() {
-    console.log("how");
-    fetch("https://icanhazdadjoke.com", {
-      headers: { Accept: "application/json" },
-    })
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            joke: result.joke,
-            id: result.id,
-          });
-        },
-        (error) => {
-          this.setState({
-            error,
-          });
-        }
-      );
-  }
+  fetchRandomJoke = () => {
+    return axios
+      .get("https://icanhazdadjoke.com/", {
+        headers: { Accept: "application/json" },
+      })
+      .then((res) => {
+        console.log(res["data"]["joke"]);
+        return res;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .then((res) => {
+        this.setState({ joke: res["data"]["joke"] });
+      });
+  };
+
+  openModal = () => {
+    this.setState({ isModalOpen: true });
+  };
+
+  closeModal = () => {
+    this.setState({ isModalOpen: false });
+  };
 
   render() {
-    const { error, isLoaded, joke, id } = this.state;
+    const { joke, id, isModalOpen } = this.state;
 
-    if (error) {
-      return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-      return <div>Loading...</div>;
-    } else {
-      return (
-        <>
-          <Header />
-          <Joke key={id} text={joke} />
-          <Wrapper>
-            <ButtonStop onClick={this.fetchRandomJoke} text="Ugh." />
-            <ButtonFun onClick={this.fetchRandomJoke} text="Haha" />
-          </Wrapper>
-        </>
-      );
-    }
+    // if (error) {
+    //   return <div>Error: {error.message}</div>;
+    // } else if (!isLoaded) {
+    //   return <div>Loading...</div>;
+    // } else {
+    return (
+      <>
+        <Header />
+        <Joke key={id} text={joke} />
+        <Wrapper>
+          <ButtonStop fetchJoke={this.fetchRandomJoke} text="Ugh." />
+          <ButtonFun
+            fetchJoke={this.fetchRandomJoke}
+            openModalFn={this.openModal}
+            text="Haha"
+          />
+        </Wrapper>
+        {isModalOpen && <Modal closeModalFn={this.closeModal} />}
+      </>
+    );
+    // }
   }
 }
 
