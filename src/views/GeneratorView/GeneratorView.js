@@ -23,6 +23,7 @@ class GeneratorView extends React.Component {
     };
   }
   componentDidMount() {
+    document.title = "👴👔👖DadJoker";
     const localStorageRef = localStorage.getItem(this.state.userName);
     console.log(localStorageRef);
 
