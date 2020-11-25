@@ -23,7 +23,6 @@ class GeneratorView extends React.Component {
       error: null,
       isLoaded: true,
       isModalOpen: false,
-      joke: "Do you wanna hear a joke?",
       favourites: [],
     };
   }
@@ -57,7 +56,6 @@ class GeneratorView extends React.Component {
     this.setState({
       favourites: [...this.state.favourites, this.state.joke],
     });
-    alert(`${this.state.favourites}`);
   };
   render() {
     const { joke, id, isModalOpen } = this.state;
@@ -65,7 +63,7 @@ class GeneratorView extends React.Component {
     return (
       <>
         <Header />
-        <Joke key={id} text={joke} />
+        <Joke key={id} text={joke ? joke : "Do you wanna hear a joke?"} />
         <Wrapper>
           <ButtonStop fetchJoke={this.fetchRandomJoke} text="Ugh." />
           <ButtonFun
