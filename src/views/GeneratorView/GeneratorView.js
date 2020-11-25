@@ -66,6 +66,12 @@ class GeneratorView extends React.Component {
       favourites: [...this.state.favourites, this.state.joke],
     });
   };
+
+  addToDisliked = () => {
+    this.setState({
+      disliked: [...this.state.disliked, this.state.joke],
+    });
+  };
   render() {
     const { joke, id, isModalOpen } = this.state;
 
@@ -83,7 +89,7 @@ class GeneratorView extends React.Component {
           />
         </Wrapper>
         {isModalOpen && <Modal closeModalFn={this.closeModal} />}
-        <ListOfJokes favJokes={this.state.favourites} />
+        {/* <ListOfJokes favJokes={this.state.favourites} /> */}
       </>
     );
   }

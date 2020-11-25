@@ -23,8 +23,6 @@ const Button = styled.button`
   }
 `;
 
-//reload dowcipu, nowe zapytanie do api
-
 const buttonTextArray = [
   "Heeee",
   "😂",

@@ -52,10 +52,9 @@ class ButtonStop extends React.Component {
     const { text } = this.state;
     return (
       <Button
-        // onClick={this.props.fetchJoke}
         onClick={() => {
-          this.changeText(randomItemFromArray(buttonTextArray));
           this.props.fetchJoke();
+          this.changeText(randomItemFromArray(buttonTextArray));
         }}
       >
         {text}
