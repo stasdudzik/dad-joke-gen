@@ -9,6 +9,8 @@ import axios from "axios";
 import GreatView from "../GreatView/GreatView";
 import TerribleView from "../TerribleView/TerribleView";
 import { BrowserRouter, Route } from "react-router-dom";
+import AppContext from "../../context";
+import ListOfJokes from "../../components/ListOfJokes/ListOfJokes";
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,9 +22,6 @@ class GeneratorView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
-      isLoaded: true,
-      isModalOpen: false,
       favourites: [],
     };
   }
@@ -74,6 +73,7 @@ class GeneratorView extends React.Component {
           />
         </Wrapper>
         {isModalOpen && <Modal closeModalFn={this.closeModal} />}
+        <ListOfJokes favJokes={this.state.favourites} />
       </>
     );
   }

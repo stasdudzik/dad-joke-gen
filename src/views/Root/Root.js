@@ -4,7 +4,7 @@ import GeneratorView from "../GeneratorView/GeneratorView";
 import GreatView from "../GreatView/GreatView";
 import TerribleView from "../TerribleView/TerribleView";
 import Navigation from "../../components/Navigation/Navigation";
-
+import AppContext from "../../context";
 class Root extends React.Component {
   render() {
     return (
