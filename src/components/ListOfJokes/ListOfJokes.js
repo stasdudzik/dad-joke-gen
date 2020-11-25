@@ -5,7 +5,7 @@ const ListOfJokes = ({ favJokes }) => {
   return (
     <div>
       {favJokes.map((item) => (
-        <p>${item}</p>
+        <p>{item}</p>
       ))}
     </div>
   );

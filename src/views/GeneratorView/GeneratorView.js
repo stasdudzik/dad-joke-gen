@@ -6,10 +6,6 @@ import ButtonStop from "../../components/Buttons/ButtonStop";
 import styled from "styled-components";
 import Modal from "../../components/Modal/Modal";
 import axios from "axios";
-import GreatView from "../GreatView/GreatView";
-import TerribleView from "../TerribleView/TerribleView";
-import { BrowserRouter, Route } from "react-router-dom";
-import AppContext from "../../context";
 import ListOfJokes from "../../components/ListOfJokes/ListOfJokes";
 
 const Wrapper = styled.div`
@@ -23,7 +19,20 @@ class GeneratorView extends React.Component {
     super(props);
     this.state = {
       favourites: [],
+      userName: "Stas",
     };
+  }
+  componentDidMount() {
+    const localStorageRef = localStorage.getItem(this.state.userName);
+    console.log(localStorageRef);
+
+    if (localStorageRef) {
+      this.setState({ favourites: localStorageRef.split(",") });
+    }
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem(this.state.userName, this.state.favourites);
   }
 
   fetchRandomJoke = () => {
@@ -39,7 +48,7 @@ class GeneratorView extends React.Component {
         console.log(err);
       })
       .then((res) => {
-        this.setState({ joke: res["data"]["joke"] });
+        this.setState({ joke: res["data"]["joke"], jokeId: res["data"]["id"] });
       });
   };
 

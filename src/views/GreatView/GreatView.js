@@ -1,12 +1,10 @@
 import React from "react";
-import Joke from "../../components/Joke/Joke";
-import AppContext from "../../context";
+import ListOfJokes from "../../components/ListOfJokes/ListOfJokes";
 
 const GreatView = () => {
   return (
     <>
-      <h1>😹 These are my favourite jokes</h1>
-      <Joke />
+      <h1>😹 My favourite jokes 😹</h1>
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
 
-const TerribleView = () => <h1>🤮 These ones are really bad...🤮 </h1>;
+const TerribleView = () => <h1>🤮 Really bad jokes...🤮 </h1>;
 
 export default TerribleView;
