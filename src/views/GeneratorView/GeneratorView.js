@@ -22,19 +22,22 @@ class GeneratorView extends React.Component {
       userName: "Stas",
     };
   }
-  // componentDidMount() {
-  //   document.title = "👴👔👖DadJoker";
-  //   const localStorageRef = localStorage.getItem(this.state.userName);
-  //   console.log(localStorageRef);
+  componentDidMount() {
+    document.title = "👴👔👖DadJoker";
+    const localStorageRef = localStorage.getItem(this.state.userName);
+    console.log(localStorageRef);
 
-  //   if (localStorageRef) {
-  //     this.setState({ favourites: localStorageRef.split(",") });
-  //   }
-  // }
+    if (localStorageRef) {
+      this.setState({ favourites: JSON.parse(localStorageRef) });
+    }
+  }
 
-  // componentDidUpdate() {
-  //   localStorage.setItem(this.state.userName, this.state.favourites);
-  // }
+  componentDidUpdate() {
+    localStorage.setItem(
+      this.state.userName,
+      JSON.stringify(this.state.favourites)
+    );
+  }
 
   fetchRandomJoke = () => {
     return axios

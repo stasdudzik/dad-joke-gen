@@ -25,13 +25,13 @@ const Text = styled.p`
 `;
 
 const GreatView = () => {
-  const greatJokesArray = localStorage.getItem("Stas");
+  const favJokes = JSON.parse(localStorage.getItem("Stas"));
 
   return (
     <>
       <Header>😹 My favourite jokes 😹</Header>
 
-      {greatJokesArray.split(",").map((item) => (
+      {Object.values(favJokes).map((item) => (
         <Wrapper>
           <Text>{item}</Text>
         </Wrapper>
