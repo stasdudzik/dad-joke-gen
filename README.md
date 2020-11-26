@@ -1,8 +1,10 @@
-# Dad Joke Generator is fetching and saving really bad jokes from [Icanhazdadjoke API]https://icanhazdadjo>
+# Dad Joke Generator
+
+is fetching and saving really bad jokes from [Icanhazdadjoke API](https://icanhazdadjoke.com/)
 
 The App was started with [Create React App](https://github.com/facebook/create-react-app)
 
-## dad-joke-gen is using:
+dad-joke-gen requires:
 
 ### [axios](https://github.com/axios/axios) for fetching data from API
 
