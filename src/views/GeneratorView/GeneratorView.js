@@ -18,23 +18,23 @@ class GeneratorView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      favourites: [],
+      favourites: {},
       userName: "Stas",
     };
   }
-  componentDidMount() {
-    document.title = "👴👔👖DadJoker";
-    const localStorageRef = localStorage.getItem(this.state.userName);
-    console.log(localStorageRef);
+  // componentDidMount() {
+  //   document.title = "👴👔👖DadJoker";
+  //   const localStorageRef = localStorage.getItem(this.state.userName);
+  //   console.log(localStorageRef);
 
-    if (localStorageRef) {
-      this.setState({ favourites: localStorageRef.split(",") });
-    }
-  }
+  //   if (localStorageRef) {
+  //     this.setState({ favourites: localStorageRef.split(",") });
+  //   }
+  // }
 
-  componentDidUpdate() {
-    localStorage.setItem(this.state.userName, this.state.favourites);
-  }
+  // componentDidUpdate() {
+  //   localStorage.setItem(this.state.userName, this.state.favourites);
+  // }
 
   fetchRandomJoke = () => {
     return axios
@@ -62,16 +62,14 @@ class GeneratorView extends React.Component {
   };
 
   addToFavourites = () => {
+    const newFavourites = { ...this.state.favourites };
+    newFavourites[`${this.state.jokeId}`] = this.state.joke;
+
     this.setState({
-      favourites: [...this.state.favourites, this.state.joke],
+      favourites: { ...newFavourites },
     });
   };
 
-  addToDisliked = () => {
-    this.setState({
-      disliked: [...this.state.disliked, this.state.joke],
-    });
-  };
   render() {
     const { joke, id, isModalOpen } = this.state;
 
